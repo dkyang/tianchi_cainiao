@@ -77,11 +77,9 @@ def gen_qty_two_week_item_store(item_store_df):
     return res_df
         
 if __name__ == '__main__':
-    '''
     item_df = pd.read_csv('data/sorted_item_feature.csv')
     res_df = gen_qty_two_week_item(item_df)
     res_df.to_csv('data/qty_item.csv', index=False)
-    '''
 
     item_store_df = pd.read_csv('data/sorted_item_store_feature.csv')
     res_df = gen_qty_two_week_item_store(item_store_df)
