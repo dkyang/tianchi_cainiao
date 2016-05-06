@@ -1,23 +1,9 @@
 import pandas as pd
 import numpy as np
 import datetime
+from util import convert_int_to_date, convert_date_to_int, get_pre_date   
 
-def convert_int_to_date(int_date):
-    year = int_date / 10000
-    month = int_date % 10000 / 100
-    day = int_date % 10000 % 100
 
-    return datetime.date(year, month, day)
-
-def convert_date_to_int(date):
-    return date.year * 10000 + date.month * 100 + date.day
-
-def get_pre_date(int_date, days):
-    date =  convert_int_to_date(int_date)
-    pre_date = date - datetime.timedelta(days)
-
-    return convert_date_to_int(pre_date)  
-     
 def gen_qty_two_week_item(item_df):
     uni_items = np.unique(item_df.item_id)
     res_df = pd.DataFrame()
@@ -43,6 +29,7 @@ def gen_qty_two_week_item(item_df):
            # qty_list.append(qty_df.qty_alipay_njhs.sum())
             end_date = get_pre_date(beg_date, 1)
             beg_date = get_pre_date(end_date, 13)
+
     id_df = pd.DataFrame(id_list)
     id_df['beg_date'] = beg_date_list
     num_df = pd.DataFrame(num_list)
@@ -88,9 +75,9 @@ def gen_qty_two_week_item_store(item_store_df):
         
 if __name__ == '__main__':
     
-    item_df = pd.read_csv('../../data/item_feature1.csv')
+    item_df = pd.read_csv('data/item_feature1.csv')
     res_df = gen_qty_two_week_item(item_df)
-    res_df.to_csv('../../data/qty_item.csv', index=False)
+    res_df.to_csv('data/2week_feature_item.csv', index=False)
     
     '''
     item_store_df = pd.read_csv('../../data/item_store_feature1.csv')

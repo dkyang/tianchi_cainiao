@@ -44,3 +44,4 @@ def get_pre_date(int_date, days):
     date =  convert_int_to_date(int_date)
     pre_date = date - datetime.timedelta(days)
 
+    return convert_date_to_int(pre_date)
