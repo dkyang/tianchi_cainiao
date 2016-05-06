@@ -37,3 +37,10 @@ def convert_int_to_date(int_date):
 
     return datetime.date(year, month, day)
 
+def convert_date_to_int(date):
+    return date.year * 10000 + date.month * 100 + date.day
+
+def get_pre_date(int_date, days):
+    date =  convert_int_to_date(int_date)
+    pre_date = date - datetime.timedelta(days)
+
