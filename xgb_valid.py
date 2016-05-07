@@ -16,10 +16,10 @@ def get_params():
     params["eta"] = 0.1
     params["min_child_weight"] = 1 
     #params["eval_meric"] = 'auc'
-    params["subsample"] = 1 
-    params["colsample_bytree"] = 1 
+    params["subsample"] = 0.6815 #1 
+    params["colsample_bytree"] = 0.701 
     params["silent"] = 1
-    params["max_depth"] = 5 
+    params["max_depth"] = 3 
     plst = list(params.items())
     return plst
 
@@ -33,8 +33,6 @@ test = pd.read_csv("data/2week_test.csv") # the train dataset is now a Pandas Da
 train_columns_to_drop = ['beg_date', 'target']
 valid_columns_to_drop = ['beg_date', 'target']
 test_columns_to_drop = ['beg_date', 'target']
-#train_columns_to_drop = ['target', 'num_alipay_njhs']
-#valid_columns_to_drop = ['num_alipay_njhs']
 valid_target = valid.target
 
 
@@ -67,7 +65,12 @@ valid_preds = model.predict(xgvalid, ntree_limit=model.best_iteration)
 test_preds = model.predict(xgtest, ntree_limit=model.best_iteration)
 
 
-preds_out = pd.DataFrame({"item_id": valid['item_id'].values, "qty": test_preds})
+preds_out = pd.DataFrame({"item_id": test['item_id'].values, "qty": test_preds})
 preds_out = preds_out.set_index('item_id')
 preds_out.to_csv('data/xgb_qty.csv')
+
+store_code_list = ["all" for i in xrange(valid.shape[0])]
+preds_out = pd.DataFrame({"item_id": valid['item_id'].values, "store_code": store_code_list, "target": valid_preds})
+preds_out = preds_out.set_index('item_id')
+preds_out.to_csv('data/xgb_qty_valid.csv')
 print 'finish'
