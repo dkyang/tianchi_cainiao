@@ -14,12 +14,12 @@ def get_params():
     params["objective"] = "reg:linear"
     params["booster"] = "gbtree"
     params["eta"] = 0.1
-    params["min_child_weight"] = 1
+    params["min_child_weight"] = 1 
     #params["eval_meric"] = 'auc'
-    params["subsample"] = 0.6815
-    params["colsample_bytree"] = 0.701
-    params["silent"] = 0
-    params["max_depth"] = 3 
+    params["subsample"] = 1 
+    params["colsample_bytree"] = 1 
+    params["silent"] = 1
+    params["max_depth"] = 5 
     plst = list(params.items())
     return plst
 
@@ -44,14 +44,15 @@ test_feat = test.drop(test_columns_to_drop, axis=1)
 
 
 xgtrain = xgb.DMatrix(train_feat, train.target.values)
-xgvalid = xgb.DMatrix(valid_feat)
+xgvalid = xgb.DMatrix(valid_feat, valid_target.values)
 xgtest = xgb.DMatrix(test_feat)
 
 plst = get_params()
 print(plst)
-watchlist = [(xgtrain, 'train')]
+watchlist = [(xgvalid, '20151130')]
 model = xgb.train(params = plst, 
 				dtrain = xgtrain, 
+                evals = watchlist,
 				num_boost_round = xgb_num_rounds)
 
 # feature importance 
