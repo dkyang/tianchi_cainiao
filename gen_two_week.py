@@ -84,16 +84,16 @@ def gen_qty_two_week_item_store(item_store_df):
         
 if __name__ == '__main__':
     
-    '''
-    item_df = pd.read_csv('data/item_feature1.csv')
-    res_df = gen_qty_two_week_item(item_df)
-    res_df.to_csv('data/2week_feature_item.csv', index=False)
-    '''
     
+    item_df = pd.read_csv('../../data/item_feature1.csv')
+    res_df = gen_qty_two_week_item(item_df)
+    res_df.to_csv('../../data/2week_feature_item.csv', index=False)
+    
+    '''   
     item_store_df = pd.read_csv('data/item_store_feature1.csv')
     res_df = gen_qty_two_week_item_store(item_store_df)
     res_df.to_csv('data/2week_feature_item_store.csv', index=False)
-
+    '''
 '''
 print convert_int_to_date(20151227)
 print convert_int_to_date(20160103)

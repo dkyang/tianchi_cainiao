@@ -16,23 +16,23 @@ def get_params():
     params["eta"] = 0.1
     params["min_child_weight"] = 1 
     #params["eval_meric"] = 'auc'
-    params["subsample"] = 1 
-    params["colsample_bytree"] = 1 
+    params["subsample"] = 0.7
+    params["colsample_bytree"] = 0.7
     params["silent"] = 1
-    params["max_depth"] = 5 
+    params["max_depth"] = 5
     plst = list(params.items())
     return plst
 
 
-xgb_num_rounds = 50 
+xgb_num_rounds = 100 
 
-train = pd.read_csv("data/2week_train.csv") # the train dataset is now a Pandas DataFrame
-valid = pd.read_csv("data/2week_valid.csv") # the train dataset is now a Pandas DataFrame
-test = pd.read_csv("data/2week_test.csv") # the train dataset is now a Pandas DataFrame
+train = pd.read_csv("../../data/2week_train.csv") # the train dataset is now a Pandas DataFrame
+valid = pd.read_csv("../../data/2week_valid.csv") # the train dataset is now a Pandas DataFrame
+test = pd.read_csv("../../data/2week_test.csv") # the train dataset is now a Pandas DataFrame
 
-train_columns_to_drop = ['beg_date', 'target']
-valid_columns_to_drop = ['beg_date', 'target']
-test_columns_to_drop = ['beg_date', 'target']
+train_columns_to_drop = ['beg_date', 'target', 'item_id']
+valid_columns_to_drop = ['beg_date', 'target', 'item_id']
+test_columns_to_drop = ['beg_date', 'target', 'item_id']
 #train_columns_to_drop = ['target', 'num_alipay_njhs']
 #valid_columns_to_drop = ['num_alipay_njhs']
 valid_target = valid.target
@@ -49,7 +49,7 @@ xgtest = xgb.DMatrix(test_feat)
 
 plst = get_params()
 print(plst)
-watchlist = [(xgvalid, '20151130')]
+watchlist = [(xgvalid, '20151130'),(xgtrain,'train')]
 model = xgb.train(params = plst, 
 				dtrain = xgtrain, 
                 evals = watchlist,
@@ -67,7 +67,12 @@ valid_preds = model.predict(xgvalid, ntree_limit=model.best_iteration)
 test_preds = model.predict(xgtest, ntree_limit=model.best_iteration)
 
 
-preds_out = pd.DataFrame({"item_id": valid['item_id'].values, "qty": test_preds})
+preds_out = pd.DataFrame({"item_id": test['item_id'].values, "qty": test_preds})
 preds_out = preds_out.set_index('item_id')
-preds_out.to_csv('data/xgb_qty.csv')
+preds_out.to_csv('../../data/xgb_qty.csv')
+
+valid_out = pd.DataFrame({"item_id": valid['item_id'].values, "qty": valid_preds})
+valid_out = valid_out.set_index('item_id')
+valid_out.to_csv('../../data/xgb_qty_valid.csv')
+
 print 'finish'
