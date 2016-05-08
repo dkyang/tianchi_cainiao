@@ -47,6 +47,11 @@ xgtrain = xgb.DMatrix(train_feat, train.target.values)
 xgvalid = xgb.DMatrix(valid_feat, valid_target.values)
 xgtest = xgb.DMatrix(test_feat)
 
+#xgtrain add sample weight
+train_weight = np.loadtxt('data/sample_weight.txt')
+xgtrain.set_weight(train_weight)
+
+
 plst = get_params()
 print(plst)
 watchlist = [(xgvalid, '20151130'),(xgtrain,'train')]
