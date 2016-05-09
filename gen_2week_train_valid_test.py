@@ -2,7 +2,7 @@ import pandas as pd
 
 if __name__ == '__main__':
 
-    week_2_item_df = pd.read_csv('data/2week_feature_item.csv')
+    week_2_item_df = pd.read_csv('../../data/2week_feature_item.csv')
     print week_2_item_df.shape
     columns = week_2_item_df.columns
     feat_cols = columns.tolist()
@@ -27,8 +27,8 @@ if __name__ == '__main__':
     # remove 0 zero qty(not on the shelves)
     train_samples = samples[(samples.beg_date != 20151214) & (samples.beg_date != 20151130) & (samples.target != 0.0)] 
     
-    test_samples.to_csv('data/2week_test.csv', index=False)
-    valid_samples.to_csv('data/2week_valid.csv', index=False)
-    train_samples.to_csv('data/2week_train.csv', index=False)
+    test_samples.to_csv('../../data/2week_test.csv', index=False)
+    valid_samples.to_csv('../../data/2week_valid.csv', index=False)
+    train_samples.to_csv('../../data/2week_train.csv', index=False)
     
 

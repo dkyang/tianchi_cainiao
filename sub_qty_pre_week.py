@@ -27,4 +27,4 @@ sub_df.store_code = sub_df.store_code.astype('string')
 sub_df.target = sub_df.target.astype(np.float64)
 
 
-sub_df.to_csv('pre_qty.csv', index=False)
+sub_df.to_csv('data/pre_2week_true_qty.csv', index=False)
