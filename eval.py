@@ -11,6 +11,8 @@ def evaluation(res_df):
     with open('data/cv_target_pre_2week_true.dict', 'r') as f:
         true_qty_dict = pk.load(f) 
 
+    count_less = 0
+
     C_N = 0
     C_R = 0
     for i in xrange(res_df.shape[0]):
@@ -30,7 +32,17 @@ def evaluation(res_df):
         if cmp(row.store_code, 'all') == 0:
             C_N += cost
         else:
+            continue
             C_R += cost
+        
+        if D > target:
+            status = 'less'
+            count_less += 1
+        else:
+            status = 'more'
+        
+        print 'cost:%f, (%f - %f) = %f, a_b = %s' % (cost, D, target, D-target, a_b)
+
 
     C = C_N + C_R
     print 'C_N = %f, C_R = %f, total cost = %f' % (C_N, C_R, C)
