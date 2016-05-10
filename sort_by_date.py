@@ -31,11 +31,11 @@ def sort_by_date_item_stores(item_store_df):
 
 if __name__ == '__main__':
 
-    item_store_df = pd.read_csv('data/item_store_feature1.csv')
-    item_df = pd.read_csv('data/item_feature1.csv')
+    item_store_df = pd.read_csv('data/item_store_feature2.csv')
+    item_df = pd.read_csv('data/item_feature2.csv')
 
     sorted_item_df = sort_by_date_items(item_df)
-    sorted_item_df.to_csv('data/sorted_item_feature.csv', index=False)    
+    sorted_item_df.to_csv('data/sorted_item_feature2.csv', index=False)    
 
     sorted_item_store_df = sort_by_date_item_stores(item_store_df)
-    sorted_item_store_df.to_csv('data/sorted_item_store_feature.csv', index=False)    
+    sorted_item_store_df.to_csv('data/sorted_item_store_feature2.csv', index=False)    

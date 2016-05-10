@@ -5,10 +5,10 @@ import sys
 
 
 def evaluation(res_df):
-    with open('data/conf.dict', 'r') as f:
+    with open('data/conf2.dict', 'r') as f:
         conf_dict = pk.load(f) 
 
-    with open('data/cv_target_pre_2week_true.dict', 'r') as f:
+    with open('data/cv_target_pre_2week_true2.dict', 'r') as f:
         true_qty_dict = pk.load(f) 
 
     count_less = 0
@@ -32,7 +32,7 @@ def evaluation(res_df):
         if cmp(row.store_code, 'all') == 0:
             C_N += cost
         else:
-            continue
+            #continue
             C_R += cost
         
         if D > target:

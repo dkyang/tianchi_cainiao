@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 
-qty_item_df = pd.read_csv('data/qty_item.csv')
-qty_item_store_df = pd.read_csv('data/qty_item_store.csv')
-sub_df = pd.read_csv('data/sample_submission.csv')
+qty_item_df = pd.read_csv('data/qty_item2.csv')
+qty_item_store_df = pd.read_csv('data/qty_item_store2.csv')
+sub_df = pd.read_csv('data/sample_submission2.csv')
 
 target_list = []
 for i in xrange(sub_df.shape[0]):
@@ -27,4 +27,4 @@ sub_df.store_code = sub_df.store_code.astype('string')
 sub_df.target = sub_df.target.astype(np.float64)
 
 
-sub_df.to_csv('data/pre_2week_true_qty.csv', index=False)
+sub_df.to_csv('data/pre_2week_true_qty2.csv', index=False)
