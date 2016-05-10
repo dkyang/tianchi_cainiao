@@ -41,7 +41,7 @@ def evaluation(res_df):
         else:
             status = 'more'
         
-        print 'cost:%f, (%f - %f) = %f, a_b = %s' % (cost, D, target, D-target, a_b)
+        #print 'cost:%f, (%f - %f) = %f, a_b = %s' % (cost, D, target, D-target, a_b)
 
 
     C = C_N + C_R

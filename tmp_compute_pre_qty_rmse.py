@@ -7,7 +7,8 @@ def rmse(y_test, y):
 
 true_df = pd.read_csv('data/pre_2week_true_qty.csv')
 cv_df = pd.read_csv('res/cv_pre_qty.csv')
-xgb_cv_df = pd.read_csv('data/xgb_qty_valid.csv')
+xgb_cv_df = pd.read_csv('data/xgb_qty_valid_2.csv')
+#xgb_cv_df = pd.read_csv('data/rf_qty_valid_1.csv')
 
 true_df = true_df[true_df.store_code == 'all']
 cv_df = cv_df[cv_df.store_code == 'all']

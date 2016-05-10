@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-qty_item_df = pd.read_csv('data/xgb_qty.csv')
+qty_item_df = pd.read_csv('data/xgb_qty_2.csv')
 qty_item_store_df = pd.read_csv('data/qty_item_store.csv')
 sub_df = pd.read_csv('data/sample_submission.csv')
 
@@ -27,4 +27,4 @@ sub_df.store_code = sub_df.store_code.astype('string')
 sub_df.target = sub_df.target.astype(np.float64)
 
 
-sub_df.to_csv('sub_xgb_base_qty.csv', index=False)
+sub_df.to_csv('sub_xgb_qty_4diff_2016_0509.csv', index=False)

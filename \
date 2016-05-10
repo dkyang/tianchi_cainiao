@@ -29,20 +29,12 @@ xgb_num_rounds = 12
 train = pd.read_csv("data/2week_train.csv") # the train dataset is now a Pandas DataFrame
 valid = pd.read_csv("data/2week_valid.csv") # the train dataset is now a Pandas DataFrame
 test = pd.read_csv("data/2week_test.csv") # the train dataset is now a Pandas DataFrame
-'''
-train = pd.read_csv("data/2week_feature_train.csv") # the train dataset is now a Pandas DataFrame
-valid = pd.read_csv("data/2week_feature_valid.csv") # the train dataset is now a Pandas DataFrame
-test = pd.read_csv("data/2week_feature_test.csv") # the train dataset is now a Pandas DataFrame
-'''
 
 #train_columns_to_drop = ['target', 'num_alipay_njhs']
 #valid_columns_to_drop = ['num_alipay_njhs']
-#train_columns_to_drop = ['beg_date', 'target', 'qty_alipay_njhs', 'num_alipay_njhs', 'unum_alipay_njhs']
 train_columns_to_drop = ['beg_date', 'target']
-valid_columns_to_drop = train_columns_to_drop  
-test_columns_to_drop = train_columns_to_drop  
-#valid_columns_to_drop = ['beg_date', 'target']
-#test_columns_to_drop = ['beg_date', 'target']
+valid_columns_to_drop = ['beg_date', 'target']
+test_columns_to_drop = ['beg_date', 'target']
 
 #train_columns_to_drop = ['target']
 #valid_columns_to_drop = ['target']
